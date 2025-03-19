@@ -8,6 +8,7 @@ use App\Http\Controllers\Frontend\ArtistProfileController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\FrontendController;
+use App\Http\Controllers\Frontend\PaymentController;
 use App\Http\Controllers\Frontend\ProfileController;
 use App\Http\Controllers\Frontend\StudentDashboardController;
 use App\Models\User;
@@ -36,6 +37,15 @@ Route::get('remove-from-cart/{id}', [CartController::class, 'removeFromCart'])->
  * Payment Routes
  */
 Route::get('checkout', CheckoutController::class)->name('checkout.index');
+Route::get('paypal/payment', [PaymentController::class, 'payWithPaypal'])->name('paypal.payment');
+Route::get('paypal/success', [PaymentController::class, 'paypaleSuccess'])->name('paypal.success');
+Route::get('paypal/cancel', [PaymentController::class, 'stripeCancel'])->name('stripe.cancel');
+Route::get('stripe/payment', [PaymentController::class, 'payWithStripe'])->name('stripe.payment');
+Route::get('stripe/success', [PaymentController::class, 'stripeSuccess'])->name('stripe.success');
+Route::get('stripe/cancel', [PaymentController::class, 'stripeCancel'])->name('stripe.cancel');
+
+Route::get('order-success', [PaymentController::class, 'orderSuccess'])->name('order.success');
+Route::get('order-failed', [PaymentController::class, 'orderFailed'])->name('order.failed');
 
 /**
  * Student Routes

@@ -19,7 +19,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin.artist-request.index') }}">
-                        <span class="nav-link-icon d-md-none d-lg-inline-block"><i class="ti ti-home"></i>
+                        <span class="nav-link-icon d-md-none d-lg-inline-block"><i class="ti ti-user-hexagon"></i>
                         </span>
                         <span class="nav-link-title">
                             Artist Requests
@@ -29,7 +29,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
                         data-bs-auto-close="false" role="button" aria-expanded="false">
-                        <span class="nav-link-icon d-md-none d-lg-inline-block"><i class="ti ti-package"></i>
+                        <span class="nav-link-icon d-md-none d-lg-inline-block"><i class="ti ti-album"></i>
                         </span>
                         <span class="nav-link-title">
                             Album Management
@@ -53,6 +53,33 @@
                             </div>
                         </div>
                     </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.orders.index') }}">
+                        <span class="nav-link-icon d-md-none d-lg-inline-block"><i class="ti ti-shopping-cart"></i></i>
+                        </span>
+                        <span class="nav-link-title">
+                            Orders
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.payment-setting.index') }}">
+                        <span class="nav-link-icon d-md-none d-lg-inline-block"><i class="ti ti-adjustments"></i></i>
+                        </span>
+                        <span class="nav-link-title">
+                            Payment Settings
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.settings.index') }}">
+                        <span class="nav-link-icon d-md-none d-lg-inline-block"><i class="ti ti-settings"></i></i>
+                        </span>
+                        <span class="nav-link-title">
+                            Site Settings
+                        </span>
+                    </a>
                 </li>
             </ul>
         </div>

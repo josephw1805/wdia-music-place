@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Album;
 use App\Models\Cart;
+use App\Models\Subscription;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
@@ -25,6 +26,9 @@ class CartController extends Controller
         }
         if (Cart::where(['album_id' => $id, 'user_id' => user()->id])->exists()) {
             return response(['message' => 'Already Added'], 401);
+        }
+        if (Subscription::where(['album_id' => $id, 'user_id' => user()->id])->exists()) {
+            return response(['message' => 'You already purchased this album'], 401);
         }
 
         $album = Album::findOrFail($id);
