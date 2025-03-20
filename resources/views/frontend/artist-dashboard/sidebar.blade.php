@@ -13,41 +13,51 @@
         </div>
         <ul class="wsus__dashboard_sidebar_menu">
             <li>
-                <a href="{{ route('artist.dashboard') }}"
-                    class="{{ request()->is('artist/dashboard') ? 'active' : '' }}">
+                <a href="{{ route('artist.dashboard') }}">
                     <div class="img">
-                        <img src="{{ asset('frontend/assets/images/dash_icon_8.png') }}" alt="icon"
-                            class="img-fluid w-100">
+                        <i class="fas fa-th-large"></i>
                     </div>
                     Dashboard
                 </a>
             </li>
             <li>
-                <a href="{{ route('artist.profile.index') }}"
-                    class="{{ request()->is('artist/profile*') ? 'active' : '' }}">
+                <a href="{{ route('artist.profile.index') }}">
                     <div class="img">
-                        <img src="{{ asset('frontend/assets/images/dash_icon_1.png') }}" alt="icon"
-                            class="img-fluid w-100">
+                        <i class="far fa-user-alt"></i>
                     </div>
                     Profile
                 </a>
             </li>
             <li>
-                <a href="{{ route('artist.albums.index') }}" class="{{ request()->is('artist/albums*') ? 'active' : '' }}">
+                <a href="{{ route('artist.albums.index') }}">
                     <div class="img">
-                        <img src="{{ asset('frontend/assets/images/dash_icon_2.png') }}" alt="icon"
-                            class="img-fluid w-100">
+                        <i class="fas fa-album-collection"></i>
                     </div>
                     Albums
                 </a>
             </li>
             <li>
-                <a href="dashboard_artist.html">
+                <a href="{{ route('artist.gateways.index') }}">
                     <div class="img">
-                        <img src="{{ asset('frontend/assets/images/dash_icon_6.png') }}" alt="icon"
-                            class="img-fluid w-100">
+                        <i class="fas fa-hand-holding-usd"></i>
                     </div>
-                    Followers
+                    Payment Gateway
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('artist.withdrawals.index') }}">
+                    <div class="img">
+                        <i class="far fa-sack-dollar"></i>
+                    </div>
+                    Withdrawals
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('artist.orders.index') }}">
+                    <div class="img">
+                        <i class="far fa-shopping-cart"></i>
+                    </div>
+                    Orders
                 </a>
             </li>
             <li>
@@ -55,8 +65,7 @@
                     @csrf
                     <a href="" onclick="event.preventDefault(); this.closest('form').submit();">
                         <div class="img">
-                            <img src="{{ asset('frontend/assets/images/dash_icon_16.png') }}" alt="icon"
-                                class="img-fluid w-100">
+                            <i class="far fa-sign-out"></i>
                         </div>
                         Sign Out
                     </a>

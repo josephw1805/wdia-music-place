@@ -43,7 +43,7 @@
                             <div class="mb-3">
                                 <button class="btn btn-primary" type="submit">
                                     <i class="ti ti-device-floppy"></i>
-                                    UPdate
+                                    Save
                                 </button>
                             </div>
                     </form>

@@ -19,7 +19,7 @@
                         <x-input-block name="name" placeholder="Enter language name" />
                         <div class="mb-3">
                             <button class="btn btn-primary" type="submit"><i class="ti ti-device-floppy"></i>
-                                Create</button>
+                                Save</button>
                         </div>
                     </form>
                 </div>

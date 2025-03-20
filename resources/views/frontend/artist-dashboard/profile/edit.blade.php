@@ -30,7 +30,8 @@
                                 <p>Manage your profile information.</p>
                             </div>
                             <div class="wsus__dashboard_contant_btn">
-                                <a href="{{ route('artist.profile.index', auth()->user()->id) }}" class="common_btn">Back</a>
+                                <a href="{{ route('artist.profile.index', auth()->user()->id) }}"
+                                    class="common_btn">Back</a>
                             </div>
                         </div>
                         <form action="{{ route('artist.profile.update') }}" class="wsus__dashboard_profile_update"

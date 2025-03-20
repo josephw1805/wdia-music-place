@@ -14,7 +14,10 @@ use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PaymentSettingController;
+use App\Http\Controllers\Admin\PayoutGatewayController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\WithdrawRequestController;
+use App\Models\PayoutGateway;
 use Illuminate\Support\Facades\Route;
 use UniSharp\LaravelFilemanager\Lfm;
 
@@ -99,6 +102,16 @@ Route::group(['middleware' => 'auth:admin', 'prefix' => 'admin', 'as' => 'admin.
     /** Site setting routes */
     Route::get('settings', [SettingController::class, 'index'])->name('settings.index');
     Route::post('general-settings', [SettingController::class, 'updateGeneralSettings'])->name('general-settings.update');
+    Route::get('commission-settings', [SettingController::class, 'commissionSettingIndex'])->name('commission-settings.index');
+    Route::post('commission-settings', [SettingController::class, 'updateCommissionSettingIndex'])->name('commission-settings.update');
+
+    /** Payout Gateway Routes */
+    Route::resource('payout-gateway', PayoutGatewayController::class);
+
+    /** WIthdraw routes */
+    Route::get('withdraw-request', [WithdrawRequestController::class, 'index'])->name('withdraw-request.index');
+    Route::get('withdraw-request/{withdraw}/details', [WithdrawRequestController::class, 'show'])->name('withdraw-request.show');
+    Route::post('withdraw-request/{withdraw}/status', [WithdrawRequestController::class, 'updateStatus'])->name('withdraw-request.status.update');
 
     /** lfm Routes */
     Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth:admin']], function () {

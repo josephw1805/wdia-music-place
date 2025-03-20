@@ -21,7 +21,7 @@
                             value="{{ $album_language->name }}" />
                         <div class="mb-3">
                             <button class="btn btn-primary" type="submit"><i class="ti ti-device-floppy"></i>
-                                Update</button>
+                                Save</button>
                         </div>
                     </form>
                 </div>

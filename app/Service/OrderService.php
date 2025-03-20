@@ -29,8 +29,9 @@ class OrderService
             foreach ($cartItems as $item) {
                 $orderItem = new OrderItem();
                 $orderItem->order_id = $order->id;
-                $orderItem->price = $item->discount > 0 ? $item->album->discount : $item->album->price;
+                $orderItem->price = $item->album->discount ?? $item->album->price;
                 $orderItem->album_id = $item->album->id;
+                $orderItem->commission_rate = config('settings.commission_rate');
                 $orderItem->save();
 
                 /** store subscription */
@@ -39,7 +40,13 @@ class OrderService
                 $subscription->album_id = $item->album->id;
                 $subscription->artist_id = $item->album->artist_id;
                 $subscription->save();
+                /** add commission to artist wallet */
+                $artistWallet = $item->album->artist;
+                $artistWallet->wallet += calculateCommission($item->album->discount ?? $item->album->price, config('settings.commission_rate'));
+                $artistWallet->save();
             }
+
+
 
             /** delete cart items */
             $cart->delete();

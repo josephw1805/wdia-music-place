@@ -8,9 +8,12 @@ use App\Http\Controllers\Frontend\ArtistProfileController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\FrontendController;
+use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Frontend\PaymentController;
+use App\Http\Controllers\Frontend\PayoutGatewayController;
 use App\Http\Controllers\Frontend\ProfileController;
 use App\Http\Controllers\Frontend\StudentDashboardController;
+use App\Http\Controllers\Frontend\WithdrawController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use UniSharp\LaravelFilemanager\Lfm;
@@ -39,7 +42,7 @@ Route::get('remove-from-cart/{id}', [CartController::class, 'removeFromCart'])->
 Route::get('checkout', CheckoutController::class)->name('checkout.index');
 Route::get('paypal/payment', [PaymentController::class, 'payWithPaypal'])->name('paypal.payment');
 Route::get('paypal/success', [PaymentController::class, 'paypaleSuccess'])->name('paypal.success');
-Route::get('paypal/cancel', [PaymentController::class, 'stripeCancel'])->name('stripe.cancel');
+Route::get('paypal/cancel', [PaymentController::class, 'paypalCancel'])->name('paypal.cancel');
 Route::get('stripe/payment', [PaymentController::class, 'payWithStripe'])->name('stripe.payment');
 Route::get('stripe/success', [PaymentController::class, 'stripeSuccess'])->name('stripe.success');
 Route::get('stripe/cancel', [PaymentController::class, 'stripeCancel'])->name('stripe.cancel');
@@ -94,6 +97,17 @@ Route::group(['middleware' => ['auth:web', 'verified', 'check_role:artist'], 'pr
     Route::post('album-content/{chapter}/sort-track', [AlbumContentController::class, 'sortTrack'])->name('album-chapter.sort-track');
     Route::get('album-content/{album}/sort-chapter', [AlbumContentController::class, 'sortChapter'])->name('album-content.sort-chapter');
     Route::post('album-content/{album}/sort-chapter', [AlbumContentController::class, 'updateSortChapter'])->name('album-content.update-sort-chapter');
+
+    /** Order Routes */
+    Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
+
+    /** PayoutGateway Routes */
+    Route::get('gateways', [PayoutGatewayController::class, 'index'])->name('gateways.index');
+    Route::post('update-gateway-info', [PayoutGatewayController::class, 'updateGatewayInfo'])->name('update-gateway-info');
+
+    /** Withdraw Routes */
+    Route::get('withdrawals', [WithdrawController::class, 'index'])->name('withdrawals.index');
+    Route::post('withdrawals/request-payout', [WithdrawController::class, 'requestPayout'])->name('withdrawals.request-payout.create');
 
     /** lfm Routes */
     Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {

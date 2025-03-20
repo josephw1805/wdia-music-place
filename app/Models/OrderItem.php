@@ -11,4 +11,9 @@ class OrderItem extends Model
     {
         return $this->belongsTo(Album::class, 'album_id', 'id');
     }
+
+    function order(): BelongsTo
+    {
+        return $this->belongsTo(Order::class, 'order_id', 'id');
+    }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cart;
 use App\Service\OrderService;
 use Illuminate\Http\Request;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
@@ -112,23 +113,23 @@ class PaymentController extends Controller
     function payWithStripe()
     {
         Stripe::setApiKey(config('gateway_settings.stripe_secret'));
-
-        $payableAmount = cartTotal() * 100 * config('gateway_settings.stripe_rate');
-        $quantityCount = cartCount();
+        $cart = Cart::where('user_id', user()->id)->get();
+        $lineItems = [];
+        foreach ($cart as $item) {
+            $lineItems[] = [
+                'price_data' => [
+                    'currency' => config('gateway_settings.stripe_currency'),
+                    'product_data' => [
+                        'name' => $item->album->title,
+                    ],
+                    'unit_amount' => ($item->album->discount ?? $item->album->price) * 100 * config('gateway_settings.stripe_rate'),
+                ],
+                'quantity' => 1
+            ];
+        }
 
         $response = StripeSession::create([
-            'line_items' => [
-                [
-                    'price_data' => [
-                        'currency' => config('gateway_settings.stripe_currency'),
-                        'product_data' => [
-                            'name' => 'Album'
-                        ],
-                        'unit_amount' => $payableAmount
-                    ],
-                    'quantity' => $quantityCount
-                ],
-            ],
+            'line_items' => $lineItems,
             'mode' => 'payment',
             'success_url' => route('stripe.success') . '?session_id={CHECKOUT_SESSION_ID}',
             'cancel_url' => route('stripe.cancel')

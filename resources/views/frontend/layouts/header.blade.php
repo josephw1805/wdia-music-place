@@ -13,9 +13,6 @@
     </div>
 </header>
 
-<!--===========================
-        MAIN MENU 3 START
-    ============================-->
 <nav class="navbar navbar-expand-lg main_menu main_menu_3">
     <a class="navbar-brand" href="{{ route('home') }}">
         <img src="{{ asset('frontend/assets/images/logo.png') }}"" alt="WDIA" class="img-fluid">
@@ -190,6 +187,3 @@
         </div>
     </div>
 </div>
-<!--============================
-        STICKY MENU END
-    ==============================-->

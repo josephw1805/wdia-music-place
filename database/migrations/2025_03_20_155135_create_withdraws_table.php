@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('order_items', function (Blueprint $table) {
+        Schema::create('withdraws', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('order_id');
-            $table->foreignId('album_id');
-            $table->integer('qty')->default(1);
-            $table->double('price');
-            $table->double('commission_rate')->nullable();
-            $table->enum('item_type', ['album'])->default('album');
+            $table->foreignId('artist_id')->constrained('users');
+            $table->double('amount');
+            $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
+            $table->string('transaction_id')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('order_items');
+        Schema::dropIfExists('withdraws');
     }
 };

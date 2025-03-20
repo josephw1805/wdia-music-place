@@ -3,9 +3,10 @@
         <h4 class="subheader">Business settings</h4>
         <div class="list-group list-group-transparent">
             <a href="{{ route('admin.settings.index') }}"
-                class="list-group-item list-group-item-action d-flex align-items-center active">General Settings</a>
-            <a href="#" class="list-group-item list-group-item-action d-flex align-items-center">My
-                Notifications</a>
+                class="list-group-item list-group-item-action d-flex align-items-center {{ request()->is('admin/settings') ? 'active' : '' }}">General
+                Settings</a>
+            <a href="{{ route('admin.commission-settings.index') }}"
+                class="list-group-item list-group-item-action d-flex align-items-center {{ request()->is('admin/commission-settings') ? 'active' : '' }}">Commission Settings</a>
         </div>
     </div>
 </div>

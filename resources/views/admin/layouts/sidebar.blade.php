@@ -64,6 +64,24 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.withdraw-request.index') }}">
+                        <span class="nav-link-icon d-md-none d-lg-inline-block"><i class="ti ti-coins"></i></i>
+                        </span>
+                        <span class="nav-link-title">
+                            Payout Requests
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.payout-gateway.index') }}">
+                        <span class="nav-link-icon d-md-none d-lg-inline-block"><i class="ti ti-cash"></i></i>
+                        </span>
+                        <span class="nav-link-title">
+                            Payment Gateways
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin.payment-setting.index') }}">
                         <span class="nav-link-icon d-md-none d-lg-inline-block"><i class="ti ti-adjustments"></i></i>
                         </span>
