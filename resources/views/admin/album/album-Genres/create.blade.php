@@ -5,18 +5,18 @@
         <div class="container-xl">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Create Album Generes</h3>
+                    <h3 class="card-title">Create Album genres</h3>
                     <div class="card-actions">
-                        <a href="{{ route('admin.album-generes.index') }}" class="btn btn-primary">
+                        <a href="{{ route('admin.album-genres.index') }}" class="btn btn-primary">
                             <i class="ti ti-arrow-left"></i>
                             Back
                         </a>
                     </div>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('admin.album-generes.store') }}" method="POST">
+                    <form action="{{ route('admin.album-genres.store') }}" method="POST">
                         @csrf
-                        <x-input-block name="name" placeholder="Enter Genere name" />
+                        <x-input-block name="name" placeholder="Enter Genre name" />
                         <div class="mb-3">
                             <button class="btn btn-primary" type="submit">
                                 <i class="ti ti-device-floppy"></i>

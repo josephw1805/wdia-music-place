@@ -15648,3 +15648,9 @@ footer {
     -ms-border-radius: 0px !important;
     -o-border-radius: 0px !important;
 }
+
+.form-check-label.track.active,
+.form-check-label.mobile-track.active {
+    color: var(--colorBlack);
+    font-weight: 500;
+}

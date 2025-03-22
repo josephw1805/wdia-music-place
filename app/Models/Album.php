@@ -18,9 +18,9 @@ class Album extends Model
         return $this->hasOne(AlbumCategory::class, 'id', 'category_id');
     }
 
-    function genere(): HasOne
+    function genre(): HasOne
     {
-        return $this->hasOne(AlbumGenere::class, 'id', 'genere_id');
+        return $this->hasOne(AlbumGenre::class, 'id', 'genre_id');
     }
 
     function language(): HasOne

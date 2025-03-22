@@ -35,13 +35,13 @@
                     </div>
                     <div class="col-xl-4">
                         <div class="add_course_more_info_radio_box">
-                            <h3>Genere</h3>
-                            @foreach ($generes as $genere)
+                            <h3>Genre</h3>
+                            @foreach ($genres as $genre)
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" id="id-{{ $genere->id }}"
-                                        name="genere" value="{{ $genere->id }}" @checked($album->genere_id === $genere->id)>
-                                    <label class="form-check-label" for="id-{{ $genere->id }}">
-                                        {{ $genere->name }}
+                                    <input class="form-check-input" type="radio" id="id-{{ $genre->id }}"
+                                        name="genre" value="{{ $genre->id }}" @checked($album->Genre_id === $genre->id)>
+                                    <label class="form-check-label" for="id-{{ $genre->id }}">
+                                        {{ $genre->name }}
                                     </label>
                                 </div>
                             @endforeach

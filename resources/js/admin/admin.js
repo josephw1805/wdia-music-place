@@ -48,3 +48,8 @@ $('.delete-confirm').on('click', function (e) {
         }
     })
 });
+
+/** Certificate js */
+$(function () {
+    $('.draggable-element').draggable();
+})

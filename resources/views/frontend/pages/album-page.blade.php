@@ -42,7 +42,7 @@
                             </div>
 
                             <div class="wsus__sidebar_course_lavel">
-                                <h3>Generes</h3>
+                                <h3>genres</h3>
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                                     <label class="form-check-label" for="flexCheckDefault">

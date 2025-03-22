@@ -3,7 +3,7 @@
 use App\Http\Controllers\Admin\AlbumCategoryController;
 use App\Http\Controllers\Admin\AlbumContentController;
 use App\Http\Controllers\Admin\AlbumController;
-use App\Http\Controllers\Admin\AlbumGenereController;
+use App\Http\Controllers\Admin\AlbumGenreController;
 use App\Http\Controllers\Admin\AlbumLanguageController;
 use App\Http\Controllers\Admin\AlbumSubCategoryController;
 use App\Http\Controllers\Admin\ArtistRequestController;
@@ -11,13 +11,13 @@ use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Admin\Auth\NewPasswordController;
 use App\Http\Controllers\Admin\Auth\PasswordController;
 use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
+use App\Http\Controllers\Admin\CertificateBuilderController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PaymentSettingController;
 use App\Http\Controllers\Admin\PayoutGatewayController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\WithdrawRequestController;
-use App\Models\PayoutGateway;
 use Illuminate\Support\Facades\Route;
 use UniSharp\LaravelFilemanager\Lfm;
 
@@ -56,8 +56,8 @@ Route::group(['middleware' => 'auth:admin', 'prefix' => 'admin', 'as' => 'admin.
     /** Album Languages Routes */
     Route::resource('album-languages', AlbumLanguageController::class);
 
-    /** Album Generes Routes */
-    Route::resource('album-generes', AlbumGenereController::class);
+    /** Album genres Routes */
+    Route::resource('album-genres', AlbumGenreController::class);
 
     /** Album Categories Routes */
     Route::resource('album-categories', AlbumCategoryController::class);
@@ -112,6 +112,10 @@ Route::group(['middleware' => 'auth:admin', 'prefix' => 'admin', 'as' => 'admin.
     Route::get('withdraw-request', [WithdrawRequestController::class, 'index'])->name('withdraw-request.index');
     Route::get('withdraw-request/{withdraw}/details', [WithdrawRequestController::class, 'show'])->name('withdraw-request.show');
     Route::post('withdraw-request/{withdraw}/status', [WithdrawRequestController::class, 'updateStatus'])->name('withdraw-request.status.update');
+
+    /** Certificate Builder Routes */
+    Route::get('certificate-builder', [CertificateBuilderController::class, 'index'])->name('certificate-builder.index');
+    Route::post('certificate-builder', [CertificateBuilderController::class, 'update'])->name('certificate-builder.update');
 
     /** lfm Routes */
     Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth:admin']], function () {

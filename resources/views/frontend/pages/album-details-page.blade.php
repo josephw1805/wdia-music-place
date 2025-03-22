@@ -398,9 +398,9 @@
                                     <p>
                                         <span><img src="{{ asset('frontend/assets/images/network_icon_black.png') }}"
                                                 alt="network" class="img-fluid"></span>
-                                        Genere
+                                        Genre
                                     </p>
-                                    {{ $album->genere->name }}
+                                    {{ $album->genre->name }}
                                 </li>
                                 <li>
                                     <p>

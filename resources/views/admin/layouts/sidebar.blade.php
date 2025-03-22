@@ -47,12 +47,21 @@
                                 <a class="dropdown-item" href="{{ route('admin.album-languages.index') }}">
                                     Album Languages
                                 </a>
-                                <a class="dropdown-item" href="{{ route('admin.album-generes.index') }}">
-                                    Album Generes
+                                <a class="dropdown-item" href="{{ route('admin.album-genres.index') }}">
+                                    Album genres
                                 </a>
                             </div>
                         </div>
                     </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.certificate-builder.index') }}">
+                        <span class="nav-link-icon d-md-none d-lg-inline-block"><i class="ti ti-certificate"></i></i>
+                        </span>
+                        <span class="nav-link-title">
+                            Certificate Builder
+                        </span>
+                    </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin.orders.index') }}">

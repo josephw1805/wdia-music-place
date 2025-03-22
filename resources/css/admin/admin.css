@@ -193,3 +193,29 @@ a:hover {
 .add_course_content .item_list .add_course_content_action_btn {
     top: 13px;
 }
+
+.certificate-body {
+    height: 500px;
+    width: 780px;
+    background: gray;
+    background-repeat: no-repeat;
+    object-fit: cover;
+    text-align: center;
+}
+
+.certificate-body div,
+.certificate-body img {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.certificate-body .title {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.certificate-body .subtitle {
+    font-size: 18px;
+    font-weight: 400;
+}
+

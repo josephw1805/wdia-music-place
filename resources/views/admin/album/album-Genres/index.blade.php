@@ -5,9 +5,9 @@
         <div class="container-xl">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Album Generes</h3>
+                    <h3 class="card-title">Album genres</h3>
                     <div class="card-actions">
-                        <a href="{{ route('admin.album-generes.create') }}" class="btn btn-primary">
+                        <a href="{{ route('admin.album-genres.create') }}" class="btn btn-primary">
                             <i class="ti ti-plus"></i>
                             Add new
                         </a>
@@ -25,16 +25,16 @@
                             </thead>
                             <tbody>
 
-                                @forelse ($generes as $genere)
+                                @forelse ($genres as $genre)
                                     <tr>
-                                        <td>{{ $genere->name }}</td>
-                                        <td>{{ $genere->slug }}</td>
+                                        <td>{{ $genre->name }}</td>
+                                        <td>{{ $genre->slug }}</td>
                                         <td>
-                                            <a href="{{ route('admin.album-generes.edit', $genere->id) }}"
+                                            <a href="{{ route('admin.album-genres.edit', $genre->id) }}"
                                                 class="btn btn-info">
                                                 <i class="ti ti-edit"></i>
                                             </a>
-                                            <a href="{{ route('admin.album-generes.destroy', $genere->id) }}"
+                                            <a href="{{ route('admin.album-genres.destroy', $genre->id) }}"
                                                 class="btn btn-danger delete-item">
                                                 <i class="ti ti-trash"></i>
                                             </a>
@@ -48,7 +48,7 @@
                             </tbody>
                         </table>
                         <div class="mt-4">
-                            {{ $generes->links() }}
+                            {{ $genres->links() }}
                         </div>
                     </div>
                 </div>

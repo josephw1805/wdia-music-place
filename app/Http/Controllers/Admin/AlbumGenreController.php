@@ -3,22 +3,22 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\AlbumGenere;
+use App\Models\AlbumGenre;
 use Exception;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
-class AlbumGenereController extends Controller
+class AlbumGenreController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index(): View
     {
-        $generes = AlbumGenere::paginate(15);
-        return view('admin.album.album-genere.index', compact('generes'));
+        $genres = AlbumGenre::paginate(15);
+        return view('admin.album.album-genre.index', compact('genres'));
     }
 
     /**
@@ -26,7 +26,7 @@ class AlbumGenereController extends Controller
      */
     public function create(): View
     {
-        return view('admin.album.album-genere.create');
+        return view('admin.album.album-genre.create');
     }
 
     /**
@@ -36,47 +36,47 @@ class AlbumGenereController extends Controller
     {
         $request->validate(['name' => ['required', 'max:255', 'unique:album_languages,name']]);
 
-        $genere = new AlbumGenere();
-        $genere->name = $request->name;
-        $genere->slug = Str::slug($request->name);
-        $genere->save();
+        $genre = new AlbumGenre();
+        $genre->name = $request->name;
+        $genre->slug = Str::slug($request->name);
+        $genre->save();
 
         notyf()->success('Created Successfully');
 
-        return redirect()->route('admin.album-generes.index');
+        return redirect()->route('admin.album-genres.index');
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(AlbumGenere $album_genere)
+    public function edit(AlbumGenre $album_Genre)
     {
-        return view('admin.album.album-genere.edit', compact('album_genere'));
+        return view('admin.album.album-genre.edit', compact('album_Genre'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, AlbumGenere $album_genere)
+    public function update(Request $request, AlbumGenre $album_Genre)
     {
-        $request->validate(['name' => ['required', 'max:255', 'unique:album_languages,name,' . $album_genere->id]]);
+        $request->validate(['name' => ['required', 'max:255', 'unique:album_languages,name,' . $album_Genre->id]]);
 
-        $album_genere->name = $request->name;
-        $album_genere->slug = Str::slug($request->name);
-        $album_genere->save();
+        $album_Genre->name = $request->name;
+        $album_Genre->slug = Str::slug($request->name);
+        $album_Genre->save();
 
         notyf()->success('Updated Successfully');
 
-        return redirect()->route('admin.album-generes.index');
+        return redirect()->route('admin.album-genres.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(AlbumGenere $album_genere)
+    public function destroy(AlbumGenre $album_Genre)
     {
         try {
-            $album_genere->delete();
+            $album_Genre->delete();
             notyf()->success('Deleted Successfully');
             return response(['message' => 'Deleted Successfully!'], 200);
         } catch (Exception $e) {

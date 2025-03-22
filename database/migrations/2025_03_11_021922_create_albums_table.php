@@ -33,7 +33,7 @@ return new class extends Migration
             $table->text('message_for_reviewer')->nullable();
             $table->enum('is_approved', ['pending', 'approved', 'rejected'])->default('pending');
             $table->enum('status', ['active', 'inactive', 'draft'])->default('draft');
-            $table->foreignId('genere_id')->nullable();
+            $table->foreignId('genre_id')->nullable();
             $table->foreignId('language_id')->nullable();
             $table->timestamps();
         });

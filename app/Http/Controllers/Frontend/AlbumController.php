@@ -7,7 +7,7 @@ use App\Http\Requests\Frontend\AlbumBasicInfoCreateRequest;
 use App\Models\Album;
 use App\Models\AlbumCategory;
 use App\Models\AlbumChapter;
-use App\Models\AlbumGenere;
+use App\Models\AlbumGenre;
 use App\Models\AlbumLanguage;
 use App\Traits\FileUpload;
 use Illuminate\Contracts\View\View;
@@ -66,10 +66,10 @@ class AlbumController extends Controller
                 return view('frontend.artist-dashboard.album.edit', compact('album'));
             case '2':
                 $categories = AlbumCategory::where('status', 1)->get();
-                $generes = AlbumGenere::all();
+                $genres = AlbumGenre::all();
                 $languages = AlbumLanguage::all();
                 $album = Album::findOrFail($request->id);
-                return view('frontend.artist-dashboard.album.more-info', compact('categories', 'generes', 'languages', 'album'));
+                return view('frontend.artist-dashboard.album.more-info', compact('categories', 'genres', 'languages', 'album'));
             case '3':
                 $albumId = $request->id;
                 $chapters = AlbumChapter::where(['album_id' => $albumId, 'artist_id' => Auth::user()->id])->orderBy('order')->get();
@@ -124,7 +124,7 @@ class AlbumController extends Controller
                 $request->validate([
                     'duration' => ['required', 'string', 'max:255'],
                     'category' => ['required', 'integer'],
-                    'genere' => ['required', 'integer'],
+                    'genre' => ['required', 'integer'],
                     'language' => ['required', 'integer'],
                 ]);
 
@@ -132,7 +132,7 @@ class AlbumController extends Controller
                 $album = Album::findOrFail($request->id);
                 $album->duration = $request->duration;
                 $album->category_id = $request->category;
-                $album->genere_id = $request->genere;
+                $album->Genre_id = $request->genre;
                 $album->language_id = $request->language;
                 $album->save();
 

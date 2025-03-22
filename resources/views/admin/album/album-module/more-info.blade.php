@@ -36,14 +36,14 @@
                     </div>
                     <div class="col-xl-4">
                         <div class="card mb-3">
-                            <h3 class="card-header">Genere</h3>
+                            <h3 class="card-header">Genre</h3>
                             <div class="card-body">
-                                @foreach ($generes as $genere)
+                                @foreach ($genres as $genre)
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" id="id-{{ $genere->id }}"
-                                            name="genere" value="{{ $genere->id }}" @checked($album->genere_id === $genere->id)>
-                                        <label class="form-check-label" for="id-{{ $genere->id }}">
-                                            {{ $genere->name }}
+                                        <input class="form-check-input" type="radio" id="id-{{ $genre->id }}"
+                                            name="genre" value="{{ $genre->id }}" @checked($album->Genre_id === $genre->id)>
+                                        <label class="form-check-label" for="id-{{ $genre->id }}">
+                                            {{ $genre->name }}
                                         </label>
                                     </div>
                                 @endforeach

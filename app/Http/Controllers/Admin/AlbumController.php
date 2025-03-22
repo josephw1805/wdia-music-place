@@ -7,7 +7,7 @@ use App\Http\Requests\Admin\AlbumBasicInfoCreateRequest;
 use App\Models\Album;
 use App\Models\AlbumCategory;
 use App\Models\AlbumChapter;
-use App\Models\AlbumGenere;
+use App\Models\AlbumGenre;
 use App\Models\AlbumLanguage;
 use App\Models\User;
 use App\Traits\FileUpload;
@@ -76,10 +76,10 @@ class AlbumController extends Controller
                 return view('admin.album.album-module.edit', compact('album', 'artists'));
             case '2':
                 $categories = AlbumCategory::where('status', 1)->get();
-                $generes = AlbumGenere::all();
+                $genres = AlbumGenre::all();
                 $languages = AlbumLanguage::all();
                 $album = Album::findOrFail($request->id);
-                return view('admin.album.album-module.more-info', compact('categories', 'generes', 'languages', 'album'));
+                return view('admin.album.album-module.more-info', compact('categories', 'genres', 'languages', 'album'));
             case '3':
                 $albumId = $request->id;
                 $chapters = AlbumChapter::where(['album_id' => $albumId])->orderBy('order')->get();
@@ -134,7 +134,7 @@ class AlbumController extends Controller
                 $request->validate([
                     'duration' => ['required', 'string', 'max:255'],
                     'category' => ['required', 'integer'],
-                    'genere' => ['required', 'integer'],
+                    'genre' => ['required', 'integer'],
                     'language' => ['required', 'integer'],
                 ]);
 
@@ -142,7 +142,7 @@ class AlbumController extends Controller
                 $album = Album::findOrFail($request->id);
                 $album->duration = $request->duration;
                 $album->category_id = $request->category;
-                $album->genere_id = $request->genere;
+                $album->Genre_id = $request->genre;
                 $album->language_id = $request->language;
                 $album->save();
 

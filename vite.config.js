@@ -12,7 +12,8 @@ export default defineConfig({
                 'resources/js/admin/admin.js',
                 'resources/js/admin/album.js',
                 'resources/js/frontend/album.js',
-                'resources/js/frontend/frontend.js'
+                'resources/js/frontend/frontend.js',
+                'resources/js/frontend/player.js'
             ],
             refresh: true,
         }),

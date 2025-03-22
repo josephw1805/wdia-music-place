@@ -21,7 +21,6 @@
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/jquery.calendar.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/range_slider.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/startRating.css') }}">
-    <link rel="stylesheet" href="{{ asset('frontend/assets/css/video_player.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/jquery.simple-bar-graph.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/sticky_menu.css') }}">
@@ -98,8 +97,6 @@
     <script src="{{ asset('frontend/assets/js/jquery.simple-bar-graph.min.js') }}"></script>
     <!--select2 js-->
     <script src="{{ asset('frontend/assets/js/select2.min.js') }}"></script>
-    <!--Video player js-->
-    <script src="{{ asset('frontend/assets/js/video_player.min.js') }}"></script>
     <!--wow js-->
     <script src="{{ asset('frontend/assets/js/wow.min.js') }}"></script>
     <!--notyf js-->

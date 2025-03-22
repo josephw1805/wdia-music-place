@@ -13,6 +13,7 @@ use App\Http\Controllers\Frontend\PaymentController;
 use App\Http\Controllers\Frontend\PayoutGatewayController;
 use App\Http\Controllers\Frontend\ProfileController;
 use App\Http\Controllers\Frontend\StudentDashboardController;
+use App\Http\Controllers\Frontend\SubscribedAlbumController;
 use App\Http\Controllers\Frontend\WithdrawController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
@@ -63,6 +64,13 @@ Route::group(['middleware' => ['auth:web', 'verified', 'check_role:student'], 'p
     Route::get('/profile/edit/{user}', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('/profile/update', [ProfileController::class, 'updateProfile'])->name('profile.update');
     Route::post('/profile/update-password', [ProfileController::class, 'updatePassword'])->name('profile.update-password');
+
+    /** Subscribed album Routes */
+    Route::get('subscribed-albums', [SubscribedAlbumController::class, 'index'])->name('subscribed-albums.index');
+    Route::get('album-player/{slug}', [SubscribedAlbumController::class, 'playerIndex'])->name('album-player.index');
+    Route::get('get-track-content', [SubscribedAlbumController::class, 'getTrackContent'])->name('get-track-content');
+    Route::post('update-watch-history', [SubscribedAlbumController::class, 'updateWatchHistory'])->name('update-watch-history');
+    Route::post('update-track-completion', [SubscribedAlbumController::class, 'updateTrackHistory'])->name('update-track-completion');
 });
 
 /**

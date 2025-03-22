@@ -29,7 +29,7 @@
 
                     <div class="text">
                         <h4>250+ Popular Albums</h4>
-                        <p>Explore a variety of fresh genere</p>
+                        <p>Explore a variety of fresh genre</p>
                     </div>
 
                     <div class="circle_box">

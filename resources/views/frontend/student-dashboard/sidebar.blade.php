@@ -15,8 +15,7 @@
             <li>
                 <a href="{{ route('student.dashboard') }}">
                     <div class="img">
-                        <img src="{{ asset('frontend/assets/images/dash_icon_8.png') }}" alt="icon"
-                            class="img-fluid w-100">
+                        <i class="fas fa-th-large"></i>
                     </div>
                     Dashboard
                 </a>
@@ -24,17 +23,15 @@
             <li>
                 <a href="{{ route('student.profile.index') }}">
                     <div class="img">
-                        <img src="{{ asset('frontend/assets/images/dash_icon_1.png') }}" alt="icon"
-                            class="img-fluid w-100">
+                        <i class="far fa-user-alt"></i>
                     </div>
                     Profile
                 </a>
             </li>
             <li>
-                <a href="dashboard_courses.html">
+                <a href="{{ route('student.subscribed-albums.index') }}">
                     <div class="img">
-                        <img src="{{ asset('frontend/assets/images/dash_icon_2.png') }}" alt="icon"
-                            class="img-fluid w-100">
+                        <i class="fas fa-album-collection"></i>
                     </div>
                     ALbums
                 </a>
@@ -42,8 +39,7 @@
             <li>
                 <a href="dashboard_order.html">
                     <div class="img">
-                        <img src="{{ asset('frontend/assets/images/dash_icon_5.png') }}" alt="icon"
-                            class="img-fluid w-100">
+                        <i class="far fa-shopping-cart"></i>
                     </div>
                     Orders
                 </a>
@@ -53,8 +49,7 @@
                     @csrf
                     <a href="" onclick="event.preventDefault(); this.closest('form').submit();">
                         <div class="img">
-                            <img src="{{ asset('frontend/assets/images/dash_icon_16.png') }}" alt="icon"
-                                class="img-fluid w-100">
+                            <i class="far fa-sign-out"></i>
                         </div>
                         Sign Out
                     </a>

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class AlbumGenere extends Model
+class AlbumGenre extends Model
 {
     //
 }
