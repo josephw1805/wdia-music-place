@@ -1,0 +1,220 @@
+:root {
+    --tblr-font-sans-serif: 'Inter Var', -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif;
+    --colorPrimary: #356DF1;
+    --colorOrange: #F5D04A;
+    --colorGreen: #43D477;
+    --colorBlack: #1E1E2F;
+    --colorWhite: #ffffff;
+    --paraColor: #787882;
+    --borderColor: rgba(30, 30, 47, 0.10);
+    --colorLightBg: #EFEFF8;
+}
+
+body {
+    font-feature-settings: "cv03", "cv04", "cv11";
+}
+
+ul,
+ol,
+li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    display: inline-block;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.ti {
+    font-size: 20px;
+}
+
+.add_course_basic_info_imput,
+.add_course_more_info_input {
+    margin-bottom: 20px;
+}
+
+.add_course_basic_info_imput label,
+.add_course_more_info_input label {
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--colorBlack);
+    margin-bottom: 3px;
+}
+
+.add_course_basic_info_imput label b {
+    text-transform: capitalize;
+    font-weight: 400;
+    font-size: 14px;
+    color: var(--paraColor);
+}
+
+.add_course_basic_info_imput input,
+.add_course_more_info_input input {
+    font-size: 16px;
+}
+
+.add_course_basic_info_imput p,
+.add_course_more_info_input p {
+    margin-top: 5px;
+}
+
+.add_course_basic_info_imput input[type=file] {
+    padding: 0;
+}
+
+.add_course_basic_info_imput input[type=file]::file-selector-button {
+    margin-right: 20px;
+    border: none;
+    background: var(--colorPrimary);
+    height: 49px;
+    padding: 0px 20px;
+    color: var(--colorLightBg);
+    cursor: pointer;
+    transition: background .3s ease-in-out;
+    -webkit-transition: background .3s ease-in-out;
+    -moz-transition: background .3s ease-in-out;
+    -ms-transition: background .3s ease-in-out;
+    -o-transition: background .3s ease-in-out;
+}
+
+.add_course_basic_info_imput input[type=file]::file-selector-button:hover {
+    background: #1245bd;
+}
+
+.add_course_content_action_btn .edit {
+    font-size: 18px;
+    color: var(--colorBlack);
+}
+
+.add_course_content_action_btn .del {
+    font-size: 18px;
+    color: red;
+}
+
+.add_course_content_action_btn .arrow {
+    font-size: 18px;
+    color: var(--colorPrimary);
+}
+
+.add_course_basic_info_imput .nice-select {
+    border-radius: 6px;
+    border: solid 1px var(--borderColor) !important;
+    height: 50px;
+    line-height: 48px;
+    margin-bottom: 20px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -ms-border-radius: 6px;
+    -o-border-radius: 6px;
+}
+
+.add_course_basic_info_imput .nice-select .current {
+    font-size: 16px;
+    color: var(--colorBlack);
+}
+
+.add_course_basic_info_imput .nice-select:after {
+    right: 18px;
+}
+
+.add_course_content_action_btn {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 5px 10px;
+    position: absolute;
+    top: 15px;
+    right: 55px;
+}
+
+.add_course_content_action_btn .dropdown-toggle {
+    white-space: nowrap;
+    border: none;
+    padding: 3px 10px;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+}
+
+.add_course_content .item_list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.add_course_content .item_list li {
+    color: var(--colorBlack);
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 8px;
+    border: 1px solid var(--borderColor);
+    padding: 13px 50px 13px 55px;
+    position: relative;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+}
+
+.add_course_content .item_list li span {
+    color: var(--colorBlack);
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.add_course_content .item_list li::before {
+    position: absolute;
+    content: "📽️";
+    font-size: 16px;
+    font-weight: 600;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    top: 7px;
+    left: 12px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+.add_course_content .item_list .add_course_content_action_btn {
+    top: 13px;
+}
+
+.certificate-body {
+    height: 500px;
+    width: 780px;
+    background: gray;
+    background-repeat: no-repeat;
+    object-fit: cover;
+    text-align: center;
+}
+
+.certificate-body div,
+.certificate-body img {
+    cursor: pointer;
+}
+
+.certificate-body .title {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.certificate-body .subtitle {
+    font-size: 18px;
+    font-weight: 400;
+}
+
