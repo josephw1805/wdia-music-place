@@ -27,13 +27,15 @@ Route::get('/', [FrontendController::class, 'index'])->name('home');
 Route::post('newsletter-subscribe', [FrontendController::class, 'subscribe'])->name('newsletter.subscribe');
 Route::get('about', [FrontendController::class, 'about'])->name('about.index');
 Route::get('contact', [FrontendController::class, 'contact'])->name('contact.index');
-
+Route::post('contact', [FrontendController::class, 'sendMail'])->name('send.contact');
 Route::get('/artist/{id}/profile', function (string $artistId) {
     $artist = User::findOrFail($artistId);
     return view('frontend.pages.artist', compact('artist'));
 })->name('artist.index');
+
 Route::get('/albums', [AlbumPageController::class, 'index'])->name('albums.index');
 Route::get('/albums/{slug}', [AlbumPageController::class, 'show'])->name('albums.show');
+Route::post('review', [AlbumPageController::class, 'storeReview'])->name('review.store');
 
 /** 
  * Cart Routes
@@ -63,6 +65,8 @@ Route::group(['middleware' => ['auth:web', 'verified', 'check_role:student'], 'p
     Route::get('/dashboard', [StudentDashboardController::class, 'index'])->name('dashboard');
     Route::get('/become-artist', [StudentDashboardController::class, 'becomeArtist'])->name('become-artist');
     Route::post('/become-artist/{user}', [StudentDashboardController::class, 'becomeArtistUpdate'])->name('become-artist.update');
+    Route::get('reviews', [StudentDashboardController::class, 'review'])->name('review.index');
+    Route::delete('reviews/{id}', [StudentDashboardController::class, 'reviewDestroy'])->name('review.destroy');
 
     /** Profile Routes */
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');

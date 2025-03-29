@@ -45,10 +45,36 @@ class SettingController extends Controller
         return view('admin.setting.commission-settings');
     }
 
-    function updateCommissionSettingIndex(Request $request): RedirectResponse
+    function updateCommissionSetting(Request $request): RedirectResponse
     {
         $validatedData = $request->validate([
             'commission_rate' => ['required', 'numeric'],
+        ]);
+
+        foreach ($validatedData as $key => $value) {
+            Setting::updateOrCreate([
+                'key' => $key
+            ], [
+                'value' => $value
+            ]);
+        }
+
+        Cache::forget('settings');
+
+        notyf()->success('Updated Successfully');
+        return redirect()->back();
+    }
+
+    function smtpSettingIndex(): View
+    {
+        return view('admin.setting.smtp-settings');
+    }
+
+    function updateSmtpSetting(Request $request): RedirectResponse
+    {
+        $validatedData = $request->validate([
+            'sender_email' => ['required', 'email', 'max:255'],
+            'receiver_email' => ['required', 'email', 'max:255']
         ]);
 
         foreach ($validatedData as $key => $value) {

@@ -4,20 +4,20 @@ $(function () {
 
 
     // Preloader js
-    $(window).on('load', function() {
+    $(window).on('load', function () {
         // Hide preloader once the page is fully loaded
-        $('#preloader').fadeOut('slow', function() {
+        $('#preloader').fadeOut('slow', function () {
             $('#main-content').fadeIn('slow');
         });
     });
-    
+
     // Fallback in case the load event doesn't trigger (after 10 seconds)
-    setTimeout(function() {
-        $('#preloader').fadeOut('slow', function() {
+    setTimeout(function () {
+        $('#preloader').fadeOut('slow', function () {
             $('#main-content').fadeIn('slow');
         });
     }, 3000); // 3 seconds timeout
-    
+
 
 
     // Menu fix js
@@ -686,48 +686,65 @@ $(function () {
     });
 
 
-    // sidebar category dropdown
+    $('.categoty_list li').each(function () {
+        var submenu = $(this).find('.wsus__sidebar_sub_category');
+
+        // Set the initial height for items with the active class
+        if ($(this).hasClass("active")) {
+            var initialHeight = 0;
+            submenu.find('div').each(function () {
+                initialHeight += $(this).outerHeight(true);
+            });
+            submenu.css("height", initialHeight + "px");
+        }
+    });
+
     $('.categoty_list li').on("click", function () {
         var isActive = $(this).hasClass("active");
         var submenu = $(this).find('.wsus__sidebar_sub_category');
-
-        // get the height of the child of submenu
         var dynamicHeight = 0;
-        $(submenu).find('div').each(function () {
+
+        // Get the height of submenu content dynamically
+        submenu.find('div').each(function () {
             dynamicHeight += $(this).outerHeight(true);
         });
 
-        $(".categoty_list li").removeClass("active");
-
-        // and remove the height of all the submenu
-        $(".categoty_list li .wsus__sidebar_sub_category").css("height", "0px");
-
-        // toggle the button
-        if ($(this).hasClass("active")) {
-            $(".categoty_list li").removeClass("active");
-            $(submenu).css("height", "0px");
-        }
-
-        if (!isActive) {
+        // Toggle active state and submenu height
+        if (isActive) {
+            $(this).removeClass("active");
+            submenu.css("height", "0px");
+        } else {
             $(this).addClass("active");
-            $(submenu).css("height", dynamicHeight + "px");
+            submenu.css("height", dynamicHeight + "px");
         }
     });
 
 
     // Range Slider
     $('.basic').alRangeSlider();
+    // Retrieve saved range values from localStorage if available
+    const savedRange = JSON.parse(localStorage.getItem('priceRange')) || { from: 0, to: 100 };
+
     const options = {
-        range: { min: 10, max: 1000, step: 1 },
-        initialSelectedValues: { from: 200, to: 800 },
+        range: { min: 0, max: 100, step: 1 },
+        initialSelectedValues: savedRange,  // Set initial selected values from localStorage
         grid: { minTicksStep: 1, marksStep: 5 },
         theme: "dark",
     };
 
+    // Initialize the slider
     $('.range_slider').alRangeSlider(options);
-    const options2 = {
-        orientation: "vertical"
-    };
+
+    // Event listener to update localStorage when the range changes
+    $('.range_slider').on('change', function (event, data) {
+        const selectedValues = {
+            from: data.from,
+            to: data.to
+        };
+
+        // Save the selected values in localStorage
+        localStorage.setItem('priceRange', JSON.stringify(selectedValues));
+    });
 
 
     // Pregress Bar

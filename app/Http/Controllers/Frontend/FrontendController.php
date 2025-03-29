@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Mail\ContactMail;
 use App\Models\AboutUsSection;
 use App\Models\Album;
 use App\Models\AlbumCategory;
@@ -19,8 +20,10 @@ use App\Models\Newsletter;
 use App\Models\Testimonial;
 use App\Models\Video;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Mail;
 
 class FrontendController extends Controller
 {
@@ -110,5 +113,34 @@ class FrontendController extends Controller
         $contactCards = Contact::where('status', 1)->get();
         $contactSetting = ContactSetting::first();
         return view('frontend.pages.contact', compact('contactCards', 'contactSetting'));
+    }
+
+    function sendMail(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'email'],
+            'subject' => ['required', 'string', 'max:255'],
+            'message' => ['required', 'string']
+        ]);
+
+        if (config('mail_queue.is_queue')) {
+            Mail::to(config('settings.receiver_email'))->queue(new ContactMail(
+                $request->name,
+                $request->email,
+                $request->subject,
+                $request->message
+            ));
+        } else {
+            Mail::to(config('settings.receiver_email'))->send(new ContactMail(
+                $request->name,
+                $request->email,
+                $request->subject,
+                $request->message
+            ));
+        }
+
+        notyf()->success('Send Successfully');
+        return redirect()->back();
     }
 }

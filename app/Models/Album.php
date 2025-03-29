@@ -32,4 +32,9 @@ class Album extends Model
     {
         return $this->hasMany(AlbumChapter::class, 'album_id', 'id')->orderBy('order');
     }
+
+    function reviews(): HasMany
+    {
+        return $this->hasMany(Review::class, 'album_id', 'id');
+    }
 }

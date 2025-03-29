@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('watch_histories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users');
             $table->foreignId('album_id');
             $table->foreignId('chapter_id');
             $table->foreignId('track_id');

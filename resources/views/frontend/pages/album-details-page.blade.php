@@ -216,149 +216,79 @@
                                     <div class="row align-items-center mb_50">
                                         <div class="col-xl-4 col-md-6">
                                             <div class="total_review">
-                                                <h2>4.7</h2>
+                                                <h2>{{ number_format($album->reviews()->avg('rating'), 1) ?? 0 }}</h2>
                                                 <p>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
+                                                    @for ($i = 0; $i < $album->reviews()->avg('rating'); $i++)
+                                                        <i class="fas fa-star"></i>
+                                                    @endfor
                                                 </p>
-                                                <h4>3 Ratings</h4>
+                                                <h4>{{ $album->reviews()->count() }} Ratings</h4>
                                             </div>
                                         </div>
                                         <div class="col-xl-8 col-md-6">
                                             <div class="review_bar">
-                                                <div class="review_bar_single">
-                                                    <p>5 <i class="fas fa-star"></i></p>
-                                                    <div id="bar1" class="barfiller">
-                                                        <div class="tipWrap">
-                                                            <span class="tip"></span>
+                                                @for ($i = 5; $i > 0; $i--)
+                                                    <div class="review_bar_single">
+                                                        <p>{{ $i }} <i class="fas fa-star"></i></p>
+                                                        <div id="bar1" class="barfiller">
+                                                            <div class="tipWrap">
+                                                                <span class="tip"></span>
+                                                            </div>
+                                                            <span class="fill"
+                                                                data-percentage="{{ ($album->reviews()->where('rating', $i)->count() / $album->reviews()->count()) * 100 }}"></span>
                                                         </div>
-                                                        <span class="fill" data-percentage="85"></span>
+                                                        <span
+                                                            class="qnty">{{ $album->reviews()->where('rating', $i)->count() }}</span>
                                                     </div>
-                                                    <span class="qnty">87</span>
-                                                </div>
-                                                <div class="review_bar_single">
-                                                    <p>4 <i class="fas fa-star"></i></p>
-                                                    <div id="bar2" class="barfiller">
-                                                        <div class="tipWrap">
-                                                            <span class="tip"></span>
-                                                        </div>
-                                                        <span class="fill" data-percentage="70"></span>
-                                                    </div>
-                                                    <span class="qnty">69</span>
-                                                </div>
-                                                <div class="review_bar_single">
-                                                    <p>3 <i class="fas fa-star"></i></p>
-                                                    <div id="bar3" class="barfiller">
-                                                        <div class="tipWrap">
-                                                            <span class="tip"></span>
-                                                        </div>
-                                                        <span class="fill" data-percentage="50"></span>
-                                                    </div>
-                                                    <span class="qnty">44</span>
-                                                </div>
-                                                <div class="review_bar_single">
-                                                    <p>2 <i class="fas fa-star"></i></p>
-                                                    <div id="bar4" class="barfiller">
-                                                        <div class="tipWrap">
-                                                            <span class="tip"></span>
-                                                        </div>
-                                                        <span class="fill" data-percentage="30"></span>
-                                                    </div>
-                                                    <span class="qnty">29</span>
-                                                </div>
-                                                <div class="review_bar_single">
-                                                    <p>1 <i class="fas fa-star"></i></p>
-                                                    <div id="bar5" class="barfiller">
-                                                        <div class="tipWrap">
-                                                            <span class="tip"></span>
-                                                        </div>
-                                                        <span class="fill" data-percentage="10"></span>
-                                                    </div>
-                                                    <span class="qnty">12</span>
-                                                </div>
-
+                                                @endfor
                                             </div>
                                         </div>
                                     </div>
                                     <h3>Reviews</h3>
-                                    <div class="wsus__course_single_reviews">
-                                        <div class="wsus__single_review_img">
-                                            <img src="images/testimonial_user_1.png" alt="user" class="img-fluid">
+                                    @foreach ($reviews as $review)
+                                        <div class="wsus__course_single_reviews">
+                                            <div class="wsus__single_review_img">
+                                                <img src="{{ asset($review->user->image) }}" alt="user"
+                                                    class="img-fluid">
+                                            </div>
+                                            <div class="wsus__single_review_text">
+                                                <h4>{{ $review->user->name }}</h4>
+                                                <h6> {{ date('d M Y', strtotime($review->created_at)) }}
+                                                    <span>
+                                                        @for ($i = 0; $i < $review->rating; $i++)
+                                                            <i class="fas fa-star"></i>
+                                                        @endfor
+                                                    </span>
+                                                </h6>
+                                                <p>{{ $review->review }}</p>
+                                            </div>
                                         </div>
-                                        <div class="wsus__single_review_text">
-                                            <h4>Dominic L. Ement</h4>
-                                            <h6> March 23,2024 at 8:37 pm
-                                                <span>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                </span>
-                                            </h6>
-                                            <p>Donec vel mauris at lectus iaculis elementum vel vel
-                                                lacus. Sed finibus velit vitae risus imperdiet placerat. Ut posuere eros
-                                                ut molestie rhoncus. Duis eget ex elementum, ultricies dolor sed,
-                                                hendrerit diam. Donec ut blandit nunc, et tempus lorem.</p>
-                                        </div>
-                                    </div>
-                                    <div class="wsus__course_single_reviews">
-                                        <div class="wsus__single_review_img">
-                                            <img src="images/testimonial_user_2.png" alt="user" class="img-fluid">
-                                        </div>
-                                        <div class="wsus__single_review_text">
-                                            <h4>Smith jhon</h4>
-                                            <h6> March 23,2024 at 8:37 pm
-                                                <span>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                </span>
-                                            </h6>
-                                            <p>Donec vel mauris at lectus iaculis elementum vel vel
-                                                lacus. Sed finibus velit vitae risus imperdiet placerat. Ut posuere eros
-                                                ut molestie rhoncus. Duis eget ex elementum, ultricies dolor sed,
-                                                hendrerit diam. Donec ut blandit nunc, et tempus lorem.</p>
-                                        </div>
+                                    @endforeach
+                                    <div>
+                                        {{ $reviews->links() }}
                                     </div>
                                 </div>
-                                <div class="wsus__courses_review_input box_area mt_40">
-                                    <h3>Write a Review</h3>
-                                    <p class="short_text">Your email address will not be published. Required fields are
-                                        marked *</p>
-                                    <div class="select_rating d-flex flex-wrap">Your Rating:
-                                        <ul id="starRating" data-stars="5"></ul>
-                                    </div>
-                                    <form action="#">
-                                        <div class="row">
-                                            <div class="col-xl-6">
-                                                <input type="text" placeholder="Name">
-                                            </div>
-                                            <div class="col-xl-6">
-                                                <input type="email" placeholder="Email">
-                                            </div>
-                                            <div class="col-xl-12">
-                                                <textarea rows="7" placeholder="Comments"></textarea>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value=""
-                                                        id="flexCheckDefault">
-                                                    <label class="form-check-label" for="flexCheckDefault">
-                                                        Save my name, email, and website in this browser for the next
-                                                        time I comment.
-                                                    </label>
+                                @auth
+                                    <div class="wsus__courses_review_input box_area mt_40">
+                                        <h3>Write a Review</h3>
+                                        <div class="select_rating d-flex flex-wrap">Your Rating:
+                                            <ul id="starRating" data-stars="5"></ul>
+                                        </div>
+                                        <form action="{{ route('review.store') }}" method="POST">
+                                            @csrf
+                                            <div class="row">
+                                                <input type="hidden" name="rating" id="rating">
+                                                <input type="hidden" name="album" value="{{ $album->id }}">
+                                                <div class="col-xl-12">
+                                                    <textarea rows="7" placeholder="Review" name="review"></textarea>
                                                 </div>
-                                                <a href="#" class="common_btn">Post Comment</a>
+                                                <div class="col-12">
+                                                    <button type="submit" class="common_btn">Post Review</a>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </form>
-                                </div>
+                                        </form>
+                                    </div>
+                                @endauth
                             </div>
                         </div>
                     </div>
@@ -513,5 +443,14 @@
         document.addEventListener("DOMContentLoaded", function() {
             ezShare.execute();
         });
+    </script>
+    <script>
+        $(function() {
+            $('#starRating li').on('click', function() {
+                let $starRating = $('#starRating').find('.star.active').length;
+
+                $('#rating').val($starRating);
+            })
+        })
     </script>
 @endpush

@@ -23,52 +23,81 @@
             <div class="row">
                 <div class="col-xl-3 col-lg-4 col-md-8 order-2 order-lg-1 wow fadeInLeft">
                     <div class="wsus__sidebar">
-                        <form action="#">
+                        <form action="{{ route('albums.index') }}">
+                            <div class="wsus__sidebar_search">
+                                <input type="text" placeholder="Search Album" name="search"
+                                    value="{{ request()->search ?? '' }}">
+                                <button type="submit">
+                                    <img src="{{ asset('frontend/assets/images/search_icon.png') }}" alt="Search"
+                                        class="img-fluid">
+                                </button>
+                            </div>
                             <div class="wsus__sidebar_category">
                                 <h3>Categories</h3>
                                 <ul class="categoty_list">
-                                    <li class="">Studio albums
-                                        <div class="wsus__sidebar_sub_category">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value=""
-                                                    id="flexCheckDefaultc1">
-                                                <label class="form-check-label" for="flexCheckDefaultc1">
-                                                    Game developments
-                                                </label>
+                                    @foreach ($categories as $category)
+                                        <li class="active">{{ $category->name }}
+                                            <div class="wsus__sidebar_sub_category">
+                                                @foreach ($category->subcategories as $subcategory)
+                                                    <div class="form-check">
+                                                        <input @checked(in_array($subcategory->id, request()->category ?? [])) class="form-check-input"
+                                                            type="checkbox" value="{{ $subcategory->id }}"
+                                                            id="category-{{ $subcategory->id }}" name="category[]">
+                                                        <label class="form-check-label"
+                                                            for="category-{{ $subcategory->id }}">
+                                                            {{ $subcategory->name }}
+                                                        </label>
+                                                    </div>
+                                                @endforeach
                                             </div>
-                                        </div>
-                                    </li>
+                                        </li>
+                                    @endforeach
                                 </ul>
                             </div>
 
                             <div class="wsus__sidebar_course_lavel">
-                                <h3>genres</h3>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        Pop
-                                    </label>
-                                </div>
+                                <h3>Genres</h3>
+                                @foreach ($genres as $genre)
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="{{ $genre->id }}"
+                                            id="genre-{{ $genre->id }}" name="genre[]" @checked(in_array($genre->id, request()->genre ?? []))>
+                                        <label class="form-check-label" for="genre-{{ $genre->id }}">
+                                            {{ $genre->name }}
+                                        </label>
+                                    </div>
+                                @endforeach
                             </div>
                             <div class="wsus__sidebar_course_lavel duration">
                                 <h3>Language</h3>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefaulte1">
-                                    <label class="form-check-label" for="flexCheckDefaulte1">
-                                        English
-                                    </label>
-                                </div>
+                                @foreach ($languages as $language)
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="{{ $language->id }}"
+                                            id="language-{{ $language->id }}" name="language[]"
+                                            @checked(in_array($language->id, request()->language ?? []))>
+                                        <label class="form-check-label" for="language-{{ $language->id }}">
+                                            {{ $language->name }}
+                                        </label>
+                                    </div>
+                                @endforeach
+                            </div>
+                            <div class="wsus__sidebar_rating">
+                                <h3>Price Range</h3>
+                                <div class="range_slider"></div>
+                            </div>
+                            <div class="row mt-3">
+                                <button type="submit" class="common_btn">Search</button>
                             </div>
                         </form>
                     </div>
                 </div>
                 <div class="col-xl-9 col-lg-8 order-lg-1">
                     <div class="wsus__page_courses_header wow fadeInUp">
-                        <p>Showing <span>1-9</span> Of <span>62</span> Results</p>
-                        <form action="">
-                            <select name="order" class="select_js">
-                                <option value="desc">New to Old</option>
-                                <option value="asc">Old to New</option>
+                        <p>Showing <span>1-{{ $albums->count() }}</span> Of <span>{{ $albums->total() }}</span> Results
+                        </p>
+                        <form action="{{ route('albums.index') }}">
+                            <select name="order" class="select_js" onchange="this.form.submit()">
+                                <option value="desc" @selected(request()->order == 'desc')>New to Old</option>
+                                <option value="asc" @selected(request()->order == 'asc')>Old to New</option>
                             </select>
                         </form>
                     </div>
@@ -149,23 +178,7 @@
 
                     </div>
                     <div class="wsus__pagination mt_50 wow fadeInUp">
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination">
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Previous">
-                                        <i class="far fa-arrow-left"></i>
-                                    </a>
-                                </li>
-                                <li class="page-item"><a class="page-link active" href="#">01</a></li>
-                                <li class="page-item"><a class="page-link" href="#">02</a></li>
-                                <li class="page-item"><a class="page-link" href="#">03</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Next">
-                                        <i class="far fa-arrow-right"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
+                        {{ $albums->withQueryString()->links() }}
                     </div>
                 </div>
             </div>

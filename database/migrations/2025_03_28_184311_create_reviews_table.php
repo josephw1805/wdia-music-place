@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('album_chapters', function (Blueprint $table) {
+        Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->foreignId('artist_id')->constrained('users');
+            $table->foreignId('user_id')->constrained('users');
             $table->foreignId('album_id')->constrained('albums');
-            $table->integer('order');
-            $table->boolean('status')->default(1);
+            $table->text('review');
+            $table->integer('rating')->default(0);
+            $table->boolean('status')->default(0);
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('album_chapters');
+        Schema::dropIfExists('reviews');
     }
 };

@@ -37,6 +37,14 @@
                 </a>
             </li>
             <li>
+                <a href="{{ route('student.review.index') }}">
+                    <div class="img">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    Reviews
+                </a>
+            </li>
+            <li>
                 <a href="dashboard_order.html">
                     <div class="img">
                         <i class="far fa-shopping-cart"></i>

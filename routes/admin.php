@@ -26,6 +26,7 @@ use App\Http\Controllers\Admin\LatestAlbumController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PaymentSettingController;
 use App\Http\Controllers\Admin\PayoutGatewayController;
+use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\VideoController;
@@ -115,7 +116,9 @@ Route::group(['middleware' => 'auth:admin', 'prefix' => 'admin', 'as' => 'admin.
     Route::get('settings', [SettingController::class, 'index'])->name('settings.index');
     Route::post('general-settings', [SettingController::class, 'updateGeneralSettings'])->name('general-settings.update');
     Route::get('commission-settings', [SettingController::class, 'commissionSettingIndex'])->name('commission-settings.index');
-    Route::post('commission-settings', [SettingController::class, 'updateCommissionSettingIndex'])->name('commission-settings.update');
+    Route::post('commission-settings', [SettingController::class, 'updateCommissionSetting'])->name('commission-settings.update');
+    Route::get('smtp-settings', [SettingController::class, 'smtpSettingIndex'])->name('smtp-settings.index');
+    Route::post('smtp-settings', [SettingController::class, 'updateSmtpSetting'])->name('smtp-settings.update');
 
     /** Payout Gateway Routes */
     Route::resource('payout-gateway', PayoutGatewayController::class);
@@ -173,6 +176,9 @@ Route::group(['middleware' => 'auth:admin', 'prefix' => 'admin', 'as' => 'admin.
     Route::resource('contact', ContactController::class);
     Route::get('contact-setting', [ContactSettingController::class, 'index'])->name('contact-setting');
     Route::post('contact-setting', [ContactSettingController::class, 'store'])->name('contact-setting.store');
+
+    /** Review Routes */
+    Route::resource('reviews', ReviewController::class);
 });
 
 /** lfm Routes */

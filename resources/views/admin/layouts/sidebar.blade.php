@@ -48,7 +48,10 @@
                                     Album Languages
                                 </a>
                                 <a class="dropdown-item" href="{{ route('admin.album-genres.index') }}">
-                                    Album genres
+                                    Album Genres
+                                </a>
+                                <a class="dropdown-item" href="{{ route('admin.reviews.index') }}">
+                                    Album Reviews
                                 </a>
                             </div>
                         </div>
